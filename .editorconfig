@@ -1,0 +1,22 @@
+# EditorConfig is awesome: http://EditorConfig.org
+
+# top-most EditorConfig file
+root = true
+
+# Unix-style newlines with a newline ending every file
+[*]
+end_of_line = crlf
+insert_final_newline = true
+
+# Matches multiple files with brace expansion notation
+# Set default charset
+[*.{js,ts,tsx}]
+charset = utf-8
+
+# 4 space indentation as tabs
+[*.{js,ts,tsx}]
+indent_style = tab
+
+# trim whitespace line endings
+trim_trailing_whitespace = true
+

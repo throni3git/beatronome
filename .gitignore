@@ -1,0 +1,9 @@
+node_modules/
+.idea/
+.vscode/
+doc/
+*.bak
+scripts/app/
+styles
+
+desktop.ini

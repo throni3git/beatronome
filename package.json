@@ -1,0 +1,14 @@
+{
+  "name": "Methronome",
+  "version": "1.0.0",
+  "description": "Methronome",
+  "main": "Gruntfile.js",
+  "devDependencies": {
+	"typescript": "latest",
+    "grunt": "latest",
+    "grunt-ts": "latest",
+    "grunt-sass": "latest",
+    "tslint": "latest"
+  },
+  "author": "Thomas Thron"
+}

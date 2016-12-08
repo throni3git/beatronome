@@ -1,0 +1,324 @@
+//COLORS
+$blue: #3833ED;
+$green: #1EDF3E;
+$red: #ED3333;
+$purple: #7F33ED;
+$teal : #22DBC0;
+$pink : #ED33CF;
+$yellow : #FFFC0C;
+$orange : #f5871f;
+
+$foreground: #444444;
+$background: #fffef5;
+$hoverground: #8fd47e;
+
+$margin : 3px;
+$sidebarWidth : 280px;
+$topbarHeight : 35px;
+$padding: 15px;
+$borderRadius: 8px;
+$borderSize: 2px;
+$AxisWidth : 8px;
+$DragHandleSize : 80px;
+$ButtonHeight : 80px;
+
+$fontSize : 18px;
+$fontSizeH2 : 2.0em;
+$fontSizeH1 : 5.0em;
+$fontMonospaced: monospace;
+$fontSerif: "Palatino Linotype", Palatino, serif;
+$fontSansSerif: Arial, Verdana, Geneva, sans-serif;
+
+
+html, body {
+	padding: 0px;
+	margin: 0px;
+	height: calc(100% - 4px);
+	font-size: $fontSize;
+}
+
+
+/** TOP BAR */
+#TopBar {
+	background-color: $foreground;
+	height: $topbarHeight;
+	margin: $margin;
+	position: relative;
+	width: calc(100% - #{$margin * 2});
+	font-family: $fontSansSerif; 
+
+	#TonejsLogo {
+		position: absolute;
+		top: $margin;
+	}
+
+	#Examples {
+
+		right: 10px;
+		top: 0px;
+		height: $topbarHeight;
+		line-height: $topbarHeight;
+		position: absolute; 
+		width: 100px;
+		text-align: left;
+
+		a {
+			position: absolute;
+			font-size: $fontSize;
+			color: white;
+			text-transform: none;
+			text-decoration: none;
+		}
+	}
+}
+
+
+#Content {
+	font-family: $fontMonospaced;
+	margin: 0 auto;
+	width: calc(100% - #{$margin * 2});
+	margin-bottom: $padding; 
+	max-width: 800px;
+    padding: $padding;
+
+	#Title {
+		padding: $padding;
+		text-align: center;
+		font-size: $fontSizeH1;
+		color: $background;
+		background-color: $foreground; 
+		border-radius: 8px;
+	}
+
+	#Explanation {
+		position: relative;
+		font-family: monospace;
+		padding: $padding;
+		color: $foreground;
+		font-size: $fontSize;
+		box-sizing: border-box;
+		border: $margin solid $foreground;
+		border-top-width: 0px;
+		width: 100%; 
+
+		img {
+			width: 80%;
+			max-width: 700px;
+			margin-left: auto;
+			margin-right: auto;
+			display: block; 
+		}
+	}
+	
+	> div {
+		margin-top: $padding;
+	}
+
+	a {
+		color: $foreground;
+		font-family: monospace;
+		font-size: $fontSize;
+		font-weight: bold;
+		text-decoration: none; 
+	}
+	a:hover {
+		color: $green; 
+	}
+	a:hover:active {
+		color: $pink; 
+	}
+
+	$DraggerHeight : 400px;
+
+
+	// DRAGER
+	#DragContainer {
+		margin-left: $margin;
+		margin-top: $margin;
+		margin-bottom: $padding;
+		width: calc(100% - #{$margin});
+		height: $DraggerHeight;
+		position: relative;
+		color: white; 
+	}
+	//SLIDERS
+	.Slider.x {
+		position: relative;
+		height: $DragHandleSize;
+		width: 100%;
+		.Axis {
+			top: 50%;
+		}
+	}
+	.Slider.y {
+		position: relative;
+		width: $DragHandleSize;
+		height: $DraggerHeight; 
+		.Axis {
+			left: 50%;
+		}
+	}
+
+	//DRAGGER
+	.Dragger {
+		width: $DragHandleSize;
+		height: $DragHandleSize;
+		position: absolute;
+		background-color: $foreground;
+		border-radius: $borderRadius;
+		z-index: 1;
+		margin-top: -$borderSize;
+		border: $borderSize solid white;
+		cursor: -webkit-grab; 
+
+		#Name {
+			width: 100%;
+			height: 100%;
+			position: relative;
+			text-align: center;
+			font-size: $fontSizeH2;
+			font-family: $fontMonospaced;
+			line-height: $DragHandleSize;
+			color: white; 
+		}
+	}
+
+	.Dragger:hover {
+		background-color: $blue;
+		color: white; 
+	}
+
+	.Dragger.is-pointer-down {
+		cursor: -webkit-grabbing;
+		background-color: $pink; 
+		#Name {
+			color: $green; 
+		}
+	}
+
+	//AXIS LINES
+	.Axis {
+		position: absolute;
+		background-color: $foreground;
+		width: $AxisWidth;
+		height: $AxisWidth;
+		/* top: $AxisWidth; */
+		/* left: $AxisWidth; */
+		border-radius: $AxisWidth/2;
+		z-index: 0; 
+	}
+
+	#xAxis {
+		width: 100%; 
+	}
+	#yAxis {
+		height: 100%; 
+	}
+
+	//BUTTONS
+	.Button {
+		font-size: $fontSizeH2;
+		width: 100%;
+		height: $ButtonHeight;
+		background-color: $foreground;
+		line-height: $ButtonHeight;
+		color: white;
+		border-radius: $borderRadius;
+		text-align: center;
+		cursor: pointer; 
+	}
+	.Button:hover {
+		color: white;
+		background-color: $blue; 
+	}
+	.Button:hover:active, #Content .Button:hover:active.Active {
+		color: $teal;
+		background-color: $pink; 
+	}
+	.Button.Toggle.Active {
+		$ToggleBorder : 3px;
+		box-sizing: border-box;
+		border: $ToggleBorder solid $foreground;
+		line-height: $ButtonHeight - $ToggleBorder*2;
+		color: $foreground;
+		background-color: white; 
+	}
+
+	//TRANSPORT
+
+	$TransportHeight : $ButtonHeight / 3;
+
+	.Transport {
+		width: 100%;
+		height: $TransportHeight;
+		background-color: $foreground;
+		line-height: $TransportHeight;
+		color: white;
+		border-radius: $borderRadius;
+		margin-top: $margin;
+		position: relative;
+
+		$PositionWidth: 70px;
+
+		#Position {
+			width: $PositionWidth;
+			left: 50%;
+			margin-left: -$PositionWidth/2;
+			text-align: left;
+			height: 100%;
+			position: absolute;
+			color: white;
+		}
+	}
+	
+	#clockDiv {
+		font-size: $fontSizeH1;
+		text-align: center;
+	}
+
+}
+
+
+#Keyboard {
+	margin: 3px !important; 
+}
+
+code {
+	background-color: #ECECEC;
+	color: #333;
+	padding: 1px; 
+}
+
+
+//LOADING
+
+#Loading {
+	font-family: monospace;
+	z-index: 100000;
+	position: absolute;
+	background-color: rgba(140, 140, 140, 0.5);
+	width: 100%;
+	height: calc(100% - 37.5px);
+	top: 37.5px;
+	left: 0px;
+	opacity: 1;
+	transition: opacity 0.4s;
+	#Text {
+		color: white;
+		position: absolute;
+		text-align: center;
+		top: 50%;
+		left: 50%;
+		width: 300px;
+		margin-left: -150px;
+		height: 60px;
+		margin-top: -30px;
+		line-height: 60px;
+		font-size: 42px; 
+	}
+}
+
+#Loading.Loaded {
+	pointer-events: none;
+	opacity: 0; 
+}

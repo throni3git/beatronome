@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ES5",
+    "lib": [
+      "es6",
+      "dom"
+    ],
+    "jsx": "react",
+    "removeComments": false,
+    "declaration": true,
+    "sourceMap": true,
+    "outFile": "../scripts/app/app.js"
+  },
+  "files": [
+    "../scripts/jquery/jquery.d.ts",
+	  "Interface.ts",
+    "Beatronome.ts"
+  ]
+}
