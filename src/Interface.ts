@@ -348,7 +348,7 @@ Interface.Button = function(params){
 			this._start();
 		}
 	} );
-	this.element.bind( "touchstart", (event) => {
+	this.element.bind( "touchend", (event) => {
 		this._start();
 	} );
 
