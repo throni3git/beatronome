@@ -2,6 +2,7 @@ declare var nx: any
 declare var beatMatrix: any
 
 let bpmSlider;
+let volumeSlider;
 let playbutton;
 let stepUpButton;
 let stepDownButton;
@@ -24,8 +25,7 @@ let amountBeats: number = 2*16;
 //the notes
 let noteNames: Array<string> = [ HIHAT_CLOSED, HIHAT_OPEN, SNARE, KICK ];
 
-let comp = new Tone.Compressor(-30, 3).toMaster();
-var gainNode = new Tone.Gain(3).toMaster();
+let gainNode = new Tone.Gain(1).toMaster();
 
 
 
@@ -159,6 +159,16 @@ $(function(){
 		}
 	});
 	$("#BPM>#Name").text( START_BPM.toFixed() );
+	
+	volumeSlider = new Interface.Slider({
+		name : "VOL",
+		min : 0,
+		max : 1,
+		value : 1,
+		drag : function(val){
+			gainNode.gain.rampTo( val, 100 / 1000 );
+		}
+	});
 
 	playbutton = new Interface.Button({
 		text : "Start",
