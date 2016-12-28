@@ -248,6 +248,7 @@ Interface.Slider = function(params){
 	}
 };
 
+
 Interface.Slider.prototype.value = function(val){
 	var maxSize = this.container[this.maxAxis]() - this.element[this.maxAxis]();
 	//y gets inverted
@@ -274,18 +275,19 @@ Interface.Slider.prototype.value = function(val){
 
 
 Interface.Slider.prototype._ondrag = function(e, pointer){
-	if (typeof this.top === "undefined"){
-		this.top = this.container.offset().top;
-		this.left = this.container.offset().left;
-	}
+	this.top = this.container.offset().top;
+	this.left = this.container.offset().left;
+	
+	let tPageX: number = this.element.offset().left;
+	let tPageY: number = this.element.offset().top;
 
 	var normPos;
 	if (this.axis === "x"){
-		var xVal = Math.max((pointer.pageX - this.left), 0);
-		normPos =  xVal / (this.container.width());
+		var xVal = Math.max((tPageX - this.left ), 0);
+		normPos =  xVal / ( this.container.width() - this.element.width() );
 	}  else {
-		var yVal = Math.max((pointer.pageY - this.top ), 0);
-		normPos =  yVal / (this.container.height());
+		var yVal = Math.max((tPageY - this.top ), 0);
+		normPos =  yVal / ( this.container.height() -  this.element.height() );
 		normPos = 1 - normPos;
 	}
 	normPos = Math.pow(normPos, this.exp);
@@ -307,6 +309,7 @@ Interface.Slider.prototype._ondrag = function(e, pointer){
 	this._setParam(value);
 };
 
+
 Interface.Slider.prototype._onstart = function(e){
 	e.preventDefault();
 	if (this.start){
@@ -314,11 +317,13 @@ Interface.Slider.prototype._onstart = function(e){
 	}
 };
 
+
 Interface.Slider.prototype._onend = function(){
 	if (this.end){
 		this.end();
 	}
 };
+
 
 Interface.Slider.prototype._setParam = function(value){
 	if (this.parameter && this.tone){
