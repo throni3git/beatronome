@@ -1,8 +1,6 @@
 //COLORS
-$blue: #3833ED;
 $green: #1EDF3E;
 $red: #ED3333;
-$purple: #7F33ED;
 $teal : #22DBC0;
 $pink : #ED33CF;
 $yellow : #FFFC0C;
@@ -10,7 +8,8 @@ $orange : #f5871f;
 
 $foreground: #444444;
 $background: #fffef5;
-$hoverground: #8fd47e;
+$hoverground: #a6d45c;
+$hovergroundDecent: #71923e;
 
 $margin : 3px;
 $sidebarWidth : 280px;
@@ -184,22 +183,19 @@ html, body {
 	}
 
 	.Dragger:hover {
-		background-color: $blue;
+		background-color: $hovergroundDecent;
 		color: white; 
 	}
 
 	.Dragger.is-pointer-down {
 		cursor: -webkit-grabbing;
-		background-color: $pink; 
-		#Name {
-			color: $green; 
-		}
+		background-color: $hoverground; 
 	}
 
 	//AXIS LINES
 	.Axis {
 		position: absolute;
-		background-color: $foreground;
+		background-color: $hovergroundDecent;
 		width: $AxisWidth;
 		height: $AxisWidth;
 		/* top: $AxisWidth; */
@@ -229,11 +225,10 @@ html, body {
 	}
 	.Button:hover {
 		color: white;
-		background-color: $blue; 
+		background-color: $hovergroundDecent; 
 	}
 	.Button:hover:active, #Content .Button:hover:active.Active {
-		color: $teal;
-		background-color: $pink; 
+		background-color: $hoverground; 
 	}
 	.Button.Toggle.Active {
 		$ToggleBorder : 3px;
