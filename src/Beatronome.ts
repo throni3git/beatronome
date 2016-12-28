@@ -209,5 +209,6 @@ $(function(){
 	});
 	
 	clockStart = new Date( 0 );
+	clockLoop();
 	setInterval( clockLoop, 1000 );
 });
