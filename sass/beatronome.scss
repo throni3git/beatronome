@@ -146,7 +146,7 @@ html, body {
 		height: $DragHandleSize;
 		width: 100%;
 		.Axis {
-			top: 50%;
+			top: calc( 50% - #{$AxisWidth} / 2 );
 		}
 	}
 	.Slider.y {
@@ -154,7 +154,7 @@ html, body {
 		width: $DragHandleSize;
 		height: $DraggerHeight; 
 		.Axis {
-			left: 50%;
+			left: calc( 50% - #{$AxisWidth} / 2 );
 		}
 	}
 
@@ -166,8 +166,8 @@ html, body {
 		background-color: $foreground;
 		border-radius: $borderRadius;
 		z-index: 1;
-		margin-top: -$borderSize;
-		border: $borderSize solid white;
+		// margin-top: -$borderSize;
+		// border: $borderSize solid white;
 		cursor: -webkit-grab; 
 
 		#Name {
