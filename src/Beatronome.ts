@@ -6,6 +6,7 @@ let volumeSlider;
 let playbutton;
 let stepUpButton;
 let stepDownButton;
+let tapTempoButton;
 
 const BEATMATRIX_HEIGHT: number = 250;
 
@@ -21,6 +22,8 @@ const KICK: string = "KICK";
 
 let amountBeats: number = 2*16;
 
+let tapTimes: Array<number> = new Array<number>();
+let tapTempoTimeout: number;
 
 //the notes
 let noteNames: Array<string> = [ HIHAT_CLOSED, HIHAT_OPEN, SNARE, KICK ];
@@ -186,18 +189,56 @@ $(function(){
 	stepUpButton = new Interface.Button({
 		text : "+ " + BPM_STEP + " BPM",
 		start : function(){
-			Tone.Transport.bpm.value = Math.min( Tone.Transport.bpm.value + BPM_STEP, BPM_MAX_VALUE );
-			bpmSlider.value( Tone.Transport.bpm.value );
-			$("#BPM>#Name").text( Tone.Transport.bpm.value.toFixed() );
+			let tNewTempo: number = Math.min( Tone.Transport.bpm.value + BPM_STEP, BPM_MAX_VALUE );
+			Tone.Transport.bpm.value = tNewTempo;
+			bpmSlider.value( tNewTempo );
+			$("#BPM>#Name").text( tNewTempo.toFixed() );
 		}
 	});
 
 	stepDownButton = new Interface.Button({
 		text : "- " + BPM_STEP + " BPM",
 		start : function(){
-			Tone.Transport.bpm.value = Math.max( Tone.Transport.bpm.value - BPM_STEP, BPM_MIN_VALUE );
-			bpmSlider.value( Tone.Transport.bpm.value );
-			$("#BPM>#Name").text( Tone.Transport.bpm.value.toFixed() );
+			let tNewTempo: number = Math.max( Tone.Transport.bpm.value - BPM_STEP, BPM_MIN_VALUE );
+			Tone.Transport.bpm.value = tNewTempo;
+			bpmSlider.value( tNewTempo );
+			$("#BPM>#Name").text( tNewTempo.toFixed() );
+		}
+	});
+	
+	tapTempoButton = new Interface.Button({
+		text : "Tap Tempo",
+		start : function(){
+			if (tapTimes.length > 4) {
+				tapTimes.splice(0, 1);
+			}
+			tapTimes.push(Date.now());
+			
+			if (tapTimes.length >= 2) {
+				// weighted tap times: later taps gain more weight
+				let tMeanDiff: number = 0;
+				let tDivider: number = 0;
+				for (let i: number = 1; i < tapTimes.length; i++) {
+					let tDiff: number = tapTimes[i] - tapTimes[i-1];
+					tMeanDiff += tDiff * i;
+					tDivider += i;
+				}
+				tMeanDiff /= tDivider;
+				let tMeanBpm: number = 60 * 1000 / tMeanDiff;
+				
+				let tNewTempo: number = Math.max( tMeanBpm, BPM_MIN_VALUE );
+				tNewTempo = Math.min(tNewTempo, BPM_MAX_VALUE);
+				Tone.Transport.bpm.value = tNewTempo;
+				bpmSlider.value( tNewTempo );
+				$("#BPM>#Name").text( tNewTempo.toFixed() );
+			}
+			
+			if (tapTempoTimeout != null) {
+				window.clearTimeout(tapTempoTimeout);
+			}
+			tapTempoTimeout = window.setTimeout(() => {
+				tapTimes.splice(0, tapTimes.length);
+			}, 2 * 1000 * 60 / BPM_MIN_VALUE);
 		}
 	});
 
