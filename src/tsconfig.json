@@ -13,7 +13,7 @@
   },
   "files": [
     "../scripts/jquery/jquery.d.ts",
-	  "Interface.ts",
+	"Interface.ts",
     "Beatronome.ts"
   ]
 }

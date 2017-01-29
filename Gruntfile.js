@@ -30,14 +30,15 @@ module.exports = function (grunt) {
 			},
 			app: {
 				files: {
-					"scripts/app/app.min.js": ["scripts/app/app.js"]
+					"scripts/app/app.min.js": ["scripts/app/app.js"],
+					"scripts/app/timingWorker.min.js": ["scripts/app/timingWorker.js"]
 				}
 			}
 		}
 	});
-	
-    
-    
+
+
+
     var runTypescript = function(pGrunt) {
         var startTime = new Date().getTime();
         var done = pGrunt.async();
@@ -47,7 +48,7 @@ module.exports = function (grunt) {
             args: [
                 "node_modules/typescript/bin/tsc",
                 "--p", pGrunt.data.tsconfig
-            ], 
+            ],
             opts: {stdio: 'inherit'}
         }, function(pError) {
             if (pError == null) {
@@ -62,7 +63,7 @@ module.exports = function (grunt) {
 
 	grunt.loadNpmTasks("grunt-ts");
 	grunt.loadNpmTasks("grunt-sass");
-    
+
     grunt.task.registerMultiTask("ts", "Build typscript", function(){ runTypescript(this); });
 
 	grunt.registerTask("default", [
