@@ -13,7 +13,7 @@ const BEATMATRIX_HEIGHT: number = 250;
 const START_BPM: number = 60;
 const BPM_STEP: number = 4;
 const BPM_MIN_VALUE: number = 40;
-const BPM_MAX_VALUE: number = 160;
+const BPM_MAX_VALUE: number = 200;
 
 const HIHAT_OPEN: string = "HIHAT_OPEN";
 const HIHAT_CLOSED: string = "HIHAT_CLOSED";
