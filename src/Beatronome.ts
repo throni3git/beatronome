@@ -201,6 +201,7 @@ $(function(){
 
 	stepUpButton = new Interface.Button({
 		text : "+ " + BPM_STEP + " BPM",
+		key: 107, // add
 		start : function(){
 			let tNewTempo: number = Math.min( Tone.Transport.bpm.value + BPM_STEP, BPM_MAX_VALUE );
 			Tone.Transport.bpm.value = tNewTempo;
@@ -211,6 +212,7 @@ $(function(){
 
 	stepDownButton = new Interface.Button({
 		text : "- " + BPM_STEP + " BPM",
+		key: 109, // subtract
 		start : function(){
 			let tNewTempo: number = Math.max( Tone.Transport.bpm.value - BPM_STEP, BPM_MIN_VALUE );
 			Tone.Transport.bpm.value = tNewTempo;
