@@ -150,6 +150,8 @@ let fillLeadingChar = ( pString: string, pChar: string, pAmountChars: number ): 
 
 
 let clockStart: Date;
+let isClockStarted = false;
+let clockTimeout;
 let clockLoop = (): void => {
 	let tDate = new Date();
 	let tMinutes: string = fillLeadingChar( clockStart.getMinutes().toFixed(), '0', 2 );
@@ -193,8 +195,17 @@ $(function(){
 		key : 32, //spacebar
 		start : function(){
 			loop.start();
+			if (clockTimeout == null) {
+				isClockStarted = true;
+				clockLoop();
+				clockTimeout = setInterval( clockLoop, 1000 );
+			}
 		},
 		end : function(){
+			if (clockTimeout != null) {
+				clearTimeout(clockTimeout);
+			}
+			clockTimeout = null;
 			loop.stop();
 		},
 	});
@@ -265,6 +276,4 @@ $(function(){
 	});
 
 	clockStart = new Date( 0 );
-	clockLoop();
-	setInterval( clockLoop, 1000 );
 });
