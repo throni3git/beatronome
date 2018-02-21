@@ -64,7 +64,7 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks("grunt-ts");
 	grunt.loadNpmTasks("grunt-sass");
 
-    grunt.task.registerMultiTask("ts", "Build typscript", function(){ runTypescript(this); });
+    grunt.task.registerMultiTask("ts", "Build typescript", function(){ runTypescript(this); });
 
 	grunt.registerTask("default", [
 		"ts:app",

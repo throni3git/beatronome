@@ -4,7 +4,7 @@
   "description": "Methronome",
   "main": "Gruntfile.js",
   "devDependencies": {
-	"typescript": "latest",
+    "typescript": "latest",
     "grunt": "latest",
     "grunt-ts": "latest",
     "grunt-sass": "latest",
